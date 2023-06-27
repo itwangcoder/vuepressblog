@@ -261,6 +261,7 @@ $accentColor = #3178c6
 }
 ```
 
+
 ## 二、网络部署
 
 ### 1、Github上面创建项目
@@ -342,9 +343,155 @@ module.exports = {
 
 然后我们在项目 `vuepressblog` 目录下创建一个脚本文件 `deploy.sh`，注意修改一下对应的用户名和仓库名：
 ```sh
+#!/usr/bin/env sh
 
+# 确保脚本抛出遇到的错误
+set -e
+
+# 生成静态文件
+npm run build
+
+# 进入生成的文件夹
+cd docs/.vuepress/dist
+
+git init
+git add -A
+git commit -m 'deploy'
+
+# 如果发布到 https://<USERNAME>.github.io/<REPO>
+git push -f git@github.com:itwangcoder/vuepressblog.git master:blog-pages
+
+cd -
 ```
 
-### 4、
+> 出现问题：<br/>
+> 执行 `deploy.sh` 文件时出现下面的错误：
+> ```
+> '"node"' 不是内部或外部命令，也不是可运行的程序或批处理文件。
+> ```
+> 
+> 解决方案：
+> - 检查环境变量中的用户变量和系统变量中是否都添加了 `D:\Application\nodejs` 一项
+
+### 4、配置 Github Pages
+
+我们可以在仓库的 Settings -> Pages 中选择 `Branch` 选项添加上传的 `blog-pages` 分支，点击 `save` <br/>
+接着点击 `Custom domain` 将 itwangcoder.github.io 填入 <br/>
+
+完成后的博客地址为： [https://itwangcoder.github.io/vuepressblog/](https://itwangcoder.github.io/vuepressblog/) <br/>
+[搭建 VuePress 博客，你可能会用到的一些插件](https://github.com/mqyqingfeng/Blog/issues/261)
+
+
+## 三、插件安装
+
+### 1、优化代码展示
+
+插件地址：[https://vuepress-theme-reco.recoluan.com/views/plugins/extractCode.html](https://vuepress-theme-reco.recoluan.com/views/plugins/extractCode.html) <br/>
+
+安装：
+```bash
+yarn add @vuepress-reco/vuepress-plugin-extract-code -D
+```
+
+使用：
+```js
+plugins: [
+    '@vuepress-reco/extract-code'
+  ]
+```
+
+当你需要使用这种方式展示代码的时候，你需要在 md 文件中添加：
+```md
+<RecoDemo :collapse="true">
+  <template slot="code-bash">
+    <<< @/docs/handbook/demo/index.sh
+  </template>
+  <template slot="code-js">
+    <<< @/docs/handbook/demo/index.js
+  </template>
+  <img src="./demo/index.gif" slot="demo" />
+</RecoDemo>
+```
+其中的@表示当前项目目录的别名，即源码的根目录，而非 docs 或者 .vuepress
+
+### 2、last-updated
+
+文章的末尾会自动显示文章的更新日期，这里的最后更新时间以通过git提交的时间为准，在本地修改文章，时间并不会改变
+```js
+plugins： [
+	['@vuepress/last-updated'],
+]
+```
+
+### 3、代码复制（未搭建成功）
+
+插件地址：[https://www.npmjs.com/package/vuepress-plugin-nuggets-style-copy](https://www.npmjs.com/package/vuepress-plugin-nuggets-style-copy)
+
+安装
+```bash
+yarn add vuepress-plugin-nuggets-style-copy -D
+```
+
+使用
+```js
+plugins： [
+    [
+        "vuepress-plugin-nuggets-style-copy",
+        {
+            copyText: "复制代码",
+            tip: {
+            content: "复制成功",
+            },
+        },
+    ],
+]
+```
+
+> 出现问题：<br/>
+> ```
+> warning An error was encountered in plugin "@vuepress-reco/back-to-top"
+> warning An error was encountered in plugin "@vuepress-reco/pagation"
+> warning An error was encountered in plugin "@vuepress-reco/comments"
+> warning An error was encountered in plugin "@vuepress/medium-zoom"
+> warning An error was encountered in plugin "@vuepress/plugin-blog"
+> warning An error was encountered in plugin "@vuepress-reco/extract-code"
+> ```
+> 解决方法：
+> ```bash
+> yarn add -D vuepress
+> ```
+> <font style="color:red;font-weight:bold">未解决</font>
+
+### 4、添加著作信息
+
+使用 vuepress-plugin-copyright 可以禁用文字复制或者在复制时添加著作权信息。
+插件地址：[https://vuepress-community.netlify.app/zh/plugins/copyright](https://vuepress-community.netlify.app/zh/plugins/copyright)
+
+安装：
+```bash
+yarn add vuepress-plugin-copyright -D
+```
+
+使用：
+``` js
+plugins: [
+  [
+    'copyright',
+    {
+      authorName: '冴羽', // 选中的文字将无法被复制
+      minLength: 30, // 如果长度超过  30 个字符
+    },
+  ]
+]
+```
+
+当你复制超过 30 个字符的时候，就会出现：
+```
+著作权归itwangcoder所有。
+链接：http://localhost:8080/vuepressblog/handbook/使用VuePress搭建个人博客.html
+```
+
+
+
 
 
