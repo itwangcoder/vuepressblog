@@ -1,0 +1,21 @@
+{
+  "name": "itWangCoder",
+  "short_name": "itWangCoder",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#2196f3",
+  "description": "itWangCoder的个人主页",
+  "theme_color": "blue",
+  "icons": [
+    {
+      "src": "./photo.jpg",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "web"
+    }
+  ]
+}

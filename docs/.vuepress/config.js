@@ -39,7 +39,9 @@ module.exports = {
     },
     locales: {      // 设置语言
         '/': {
-          lang: 'zh-CN'
+            lang: 'zh-CN'
         }
-    }
+    },
+    // 和仓库名相同
+    base: '/vuepressblog/'
 };

@@ -263,5 +263,88 @@ $accentColor = #3178c6
 
 ## 二、网络部署
 
-### 1、
+### 1、Github上面创建项目
+
+到这里，我们的博客网站基本搭建好了，接下来我们将它部署到 Github Pages 上。首先我们需要把我们的这个项目上传到 Github 上面 <br/>
+为此，我们需要在 Github 上面新建一个仓库，这里我取名为：`vuepressblog`，接着依次执行下面的代码
+```git
+git init        # 初始化 git 仓库
+git add *       # 把项目添加到暂存区
+git commit -m "first commit"        # 把项目提交到仓库'
+git remote add origin git@github.com:itwangcoder/vuepressblog.git           # 把本地的仓库和 Github 上面的仓库相关联
+git push origin master          # 上传文件到远程仓库
+```
+
+### 2、修改 config.js 配置文件
+
+相应地，我们需要在 config.js 添加一个 base 路径配置：
+```js
+module.exports = {
+  ...
+  // 和仓库名相同
+  base: '/vuepressblog/',
+  ...
+}
+```
+
+最终 `config.js` 文件内容为
+```js
+module.exports = {
+    title: 'itwangcoder\'s blog',
+    description: '我的个人网站',
+    head: [ // 注入到当前页面的 HTML <head> 中的标签
+        ['link', { rel: 'icon', href: '/logo.jpg' }], // 增加一个自定义的 favicon(网页标签的图标)
+    ],
+    serviceWorker: true, // 是否开启 PWA
+    base: '/', // 这是部署到github相关的配置
+    markdown: {
+        lineNumbers: false // 代码块显示行号
+    },
+    theme: "reco",
+    themeConfig: {
+        nav: [ // 导航栏配置
+            { text: '首页', link: '/' },
+            { text: '百度', link: 'https://www.baidu.com' },
+            { text: 'GitHub', link: 'https://github.com/' }
+        ],
+        // sidebar: 'auto', // 侧边栏配置
+        // sidebarDepth: 2, // 侧边栏显示2级
+        sidebar: [
+            {
+                title: "欢迎学习",
+                path: "/",
+                collapsable: false,     // 是否折叠
+                children: [{ title: "博客简介", path: "/" }]
+            },
+            {
+                title: "杂篇",
+                path: "/handbook/使用VuePress搭建个人博客",
+                collapsable: true,     // 是否折叠
+                children: [
+                    { title: "使用vuepress搭建个人博客", path: "/handbook/使用VuePress搭建个人博客" },
+                    { title: "第二篇", path: "/handbook/2" }
+                ]
+            }
+        ],
+        subSidebar: 'auto'      // 开启目录结构
+    },
+    locales: {      // 设置语言
+        '/': {
+            lang: 'zh-CN'
+        }
+    },
+    // 和仓库名相同
+    base: '/vuepressblog/'
+};
+```
+
+### 3、创建脚本文件
+
+然后我们在项目 `vuepressblog` 目录下创建一个脚本文件 `deploy.sh`，注意修改一下对应的用户名和仓库名：
+```sh
+
+```
+
+### 4、
+
 
