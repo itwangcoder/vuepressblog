@@ -423,7 +423,7 @@ plugins： [
 ]
 ```
 
-### 3、代码复制（未搭建成功）
+### 3、代码复制<font style="color:red;font-weight:bold">（未搭建成功）</font>
 
 插件地址：[https://www.npmjs.com/package/vuepress-plugin-nuggets-style-copy](https://www.npmjs.com/package/vuepress-plugin-nuggets-style-copy)
 
