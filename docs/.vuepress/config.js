@@ -18,6 +18,8 @@ module.exports = {
         type: 'blog',
         nav: [ // 导航栏配置
             { text: '首页', link: '/' },
+            // 设置时间轴
+            { text: '时间轴', link: '/timeline/', icon: 'reco-date' },
             { text: '百度', link: 'https://www.baidu.com' },
             { text: 'GitHub', link: 'https://github.com/' }
         ],

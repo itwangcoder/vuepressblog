@@ -73,7 +73,7 @@ module.exports = {
 
 打开终端，执行 `npm run dev` 命令启动服务，用户可以在 http://localhost:8080 地址中访问博客页面 <br/>
 此时博客的界面如下：
-![](/handbook/使用VuePress搭建个人博客/05启动服务个人博客页面.png)
+![](使用VuePress搭建个人博客/05启动服务个人博客页面.png)
 
 
 ### 6、添加侧边栏
@@ -137,7 +137,7 @@ module.exports = {
 ```
 
 此时页面如下所示：
-![](/handbook/使用VuePress搭建个人博客/06添加侧边栏个人博客页面.png)
+![](使用VuePress搭建个人博客/06添加侧边栏个人博客页面.png)
 
 
 ### 7、更换主题
@@ -158,7 +158,7 @@ module.exports = {
 ```
 
 配置好之后，可以看到自己的博客网站新增了一些功能，例如模式切换：
-![](/handbook/使用VuePress搭建个人博客/07更换主题个人博客页面.png)
+![](使用VuePress搭建个人博客/07更换主题个人博客页面.png)
 
 ### 8、添加文章信息
 
@@ -200,7 +200,7 @@ publish: false
 - publish：文章是否发布。
 
 此时页面效果如下：
-![](/handbook/使用VuePress搭建个人博客/08添加文章信息个人博客页面.png)
+![](使用VuePress搭建个人博客/08添加文章信息个人博客页面.png)
 
 ### 9、设置语言
 
@@ -231,7 +231,7 @@ module.exports = {
 ```
 
 此时页面右侧出现子标题，页面效果如下：
-![](/handbook/使用VuePress搭建个人博客/10开启目录结构个人博客页面.png)
+![](使用VuePress搭建个人博客/10开启目录结构个人博客页面.png)
 
 ### 11、修改主题颜色
 
@@ -241,7 +241,7 @@ $accentColor = #3178c6
 ```
 
 页面效果如下：
-![](/handbook/使用VuePress搭建个人博客/11修改主题颜色个人博客页面.png)
+![](使用VuePress搭建个人博客/11修改主题颜色个人博客页面.png)
 
 ### 12、自定义修改样式
 
@@ -1009,6 +1009,21 @@ $mobileSidebarWidth = $sidebarWidth * 0.82
         width calc(100% - 1rem)
 ```
 
+### 3、添加时间轴
+
+使用：
+```js
+// .vuepress/config.js
+module.exports = {
+  theme: 'reco',
+  themeConfig: {
+    nav: [
+      { text: 'TimeLine', link: '/timeline/', icon: 'reco-date' }
+    ]
+  }
+}
+
+```
 
 
 
