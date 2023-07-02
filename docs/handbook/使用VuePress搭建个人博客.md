@@ -8,6 +8,7 @@ categories:
 tags:
  - VuePress
  - 博客
+ - 安装
 ---
 
 ## 一、本地搭建
@@ -241,7 +242,6 @@ $accentColor = #3178c6
 
 页面效果如下：
 ![](/handbook/%E4%BD%BF%E7%94%A8VuePress%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/11%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98%E9%A2%9C%E8%89%B2%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2.png)
-![](/docs/.vuepress/public/handbook/%E4%BD%BF%E7%94%A8VuePress%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/11%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98%E9%A2%9C%E8%89%B2%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2.png)
 
 ### 12、自定义修改样式
 
