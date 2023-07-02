@@ -1,0 +1,7 @@
+::-webkit-scrollbar-track-piece {
+  background-color: transparent !important;
+  -webkit-border-radius: 0em !important;
+  -moz-border-radius: 0em !important;
+  border-radius: 0em !important;
+}
+/*滚动条鼠标移上去*/
