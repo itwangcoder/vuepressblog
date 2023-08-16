@@ -4,7 +4,7 @@ module.exports = {
     head: [ // 注入到当前页面的 HTML <head> 中的标签
         ['link', { rel: 'icon', href: '/img/logo.png' }], // 增加一个自定义的 favicon(网页标签的图标)
         // 此标记可告知浏览器如何在移动设备上呈现网页。该标记的存在可向 Google 表明该网页适合移动设备。
-        ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1' }],
+        ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1,user-scalable=no' }],
     ],
     serviceWorker: true, // 是否开启 PWA
     base: '/', // 这是部署到github相关的配置
@@ -17,6 +17,7 @@ module.exports = {
         logo: "/img/logo.png",  // 设置标题栏的图像
         author: "itwangcoder",  // 设置主页作者名称
         authorAvatar: "/img/logo.png",  // 设置主页用户图像
+        lastUpdated: 'Last Updated', //最后更新时间
         type: 'blog',
         nav: [ // 导航栏配置
             { text: '首页', link: '/' },

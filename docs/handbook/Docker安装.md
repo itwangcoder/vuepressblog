@@ -6,6 +6,7 @@ date: '2023-07-02'
 categories:
  - 其他
 tags:
+ - Linux
  - Docker
  - 安装
 ---
