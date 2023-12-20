@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Nginx学习笔记尚硅谷 | itwangcoder&#39;s blog</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    <link rel="icon" href="/vuepressblog/img/logo.png">
+    <meta name="description" content="Nginx学习笔记尚硅谷">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/vuepressblog/assets/css/0.styles.e7a65157.css" as="style"><link rel="preload" href="/vuepressblog/assets/js/app.80634c63.js" as="script"><link rel="preload" href="/vuepressblog/assets/js/3.ef187fa4.js" as="script"><link rel="preload" href="/vuepressblog/assets/js/1.93e2b1ee.js" as="script"><link rel="preload" href="/vuepressblog/assets/js/40.fb2393be.js" as="script"><link rel="preload" href="/vuepressblog/assets/js/9.76c7ad5c.js" as="script"><link rel="prefetch" href="/vuepressblog/assets/js/10.987eeee2.js"><link rel="prefetch" href="/vuepressblog/assets/js/11.e2698b0f.js"><link rel="prefetch" href="/vuepressblog/assets/js/12.d1a773de.js"><link rel="prefetch" href="/vuepressblog/assets/js/13.b1124dce.js"><link rel="prefetch" href="/vuepressblog/assets/js/14.d43425cc.js"><link rel="prefetch" href="/vuepressblog/assets/js/15.301d4ee9.js"><link rel="prefetch" href="/vuepressblog/assets/js/16.fb92ba76.js"><link rel="prefetch" href="/vuepressblog/assets/js/17.ad9b924f.js"><link rel="prefetch" href="/vuepressblog/assets/js/18.b28999b2.js"><link rel="prefetch" href="/vuepressblog/assets/js/19.ae4fe37d.js"><link rel="prefetch" href="/vuepressblog/assets/js/20.8648e605.js"><link rel="prefetch" href="/vuepressblog/assets/js/21.afba39d8.js"><link rel="prefetch" href="/vuepressblog/assets/js/22.a421ec88.js"><link rel="prefetch" href="/vuepressblog/assets/js/23.43bb5f78.js"><link rel="prefetch" href="/vuepressblog/assets/js/24.5300c069.js"><link rel="prefetch" href="/vuepressblog/assets/js/25.e5fe554e.js"><link rel="prefetch" href="/vuepressblog/assets/js/26.d4f0f7c0.js"><link rel="prefetch" href="/vuepressblog/assets/js/27.3d604a05.js"><link rel="prefetch" href="/vuepressblog/assets/js/28.5b15f884.js"><link rel="prefetch" href="/vuepressblog/assets/js/29.f763d748.js"><link rel="prefetch" href="/vuepressblog/assets/js/30.2d33ed3c.js"><link rel="prefetch" href="/vuepressblog/assets/js/31.63dec94e.js"><link rel="prefetch" href="/vuepressblog/assets/js/32.1d419569.js"><link rel="prefetch" href="/vuepressblog/assets/js/33.dd0d73a3.js"><link rel="prefetch" href="/vuepressblog/assets/js/34.11980da6.js"><link rel="prefetch" href="/vuepressblog/assets/js/35.60c39dd1.js"><link rel="prefetch" href="/vuepressblog/assets/js/36.3eb7aee1.js"><link rel="prefetch" href="/vuepressblog/assets/js/37.9b1bc008.js"><link rel="prefetch" href="/vuepressblog/assets/js/38.05776efb.js"><link rel="prefetch" href="/vuepressblog/assets/js/39.7ae3eed8.js"><link rel="prefetch" href="/vuepressblog/assets/js/4.fadd923b.js"><link rel="prefetch" href="/vuepressblog/assets/js/41.5f5dec94.js"><link rel="prefetch" href="/vuepressblog/assets/js/42.b9f6299c.js"><link rel="prefetch" href="/vuepressblog/assets/js/43.b3178a1b.js"><link rel="prefetch" href="/vuepressblog/assets/js/5.b07d85ee.js"><link rel="prefetch" href="/vuepressblog/assets/js/6.cdd119e1.js"><link rel="prefetch" href="/vuepressblog/assets/js/7.fe6c61b0.js"><link rel="prefetch" href="/vuepressblog/assets/js/8.d08f9a62.js">
+    <link rel="stylesheet" href="/vuepressblog/assets/css/0.styles.e7a65157.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar" data-v-7dd95ae2><div data-v-7dd95ae2><div class="password-shadow password-wrapper-out" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>itwangcoder's blog</h3> <p class="description" data-v-59e6cb88>我的个人网站</p> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>itwangcoder</span>
+          
+        <!---->
+        2023
+      </a></span></div></div> <div class="hide" data-v-7dd95ae2><header class="navbar" data-v-7dd95ae2><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/vuepressblog/" class="home-link router-link-active"><img src="/vuepressblog/img/logo.png" alt="itwangcoder's blog" class="logo"> <span class="site-name">itwangcoder's blog</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/vuepressblog/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><a href="/vuepressblog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间轴
+</a></div><div class="nav-item"><a href="https://www.baidu.com" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  百度
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-7dd95ae2></div> <aside class="sidebar" data-v-7dd95ae2><div class="personal-info-wrapper" data-v-1fad0c41 data-v-7dd95ae2><img src="/vuepressblog/img/logo.png" alt="author-avatar" class="personal-img" data-v-1fad0c41> <h3 class="name" data-v-1fad0c41>
+    itwangcoder
+  </h3> <div class="num" data-v-1fad0c41><div data-v-1fad0c41><h3 data-v-1fad0c41>31</h3> <h6 data-v-1fad0c41>文章</h6></div> <div data-v-1fad0c41><h3 data-v-1fad0c41>32</h3> <h6 data-v-1fad0c41>标签</h6></div></div> <ul class="social-links" data-v-1fad0c41></ul> <hr data-v-1fad0c41></div> <nav class="nav-links"><div class="nav-item"><a href="/vuepressblog/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><a href="/vuepressblog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间轴
+</a></div><div class="nav-item"><a href="https://www.baidu.com" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  百度
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav> <!----> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>Nginx学习笔记尚硅谷</h3> <!----> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>itwangcoder</span>
+          
+        <!---->
+        2023
+      </a></span></div></div> <div data-v-7dd95ae2><div data-v-7dd95ae2><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">Nginx学习笔记尚硅谷</h1> <div data-v-8a445198><i class="iconfont reco-account" data-v-8a445198><span data-v-8a445198>itwangcoder</span></i> <i class="iconfont reco-date" data-v-8a445198><span data-v-8a445198>2023/12/20</span></i> <!----> <i class="tags iconfont reco-tag" data-v-8a445198><span class="tag-item" data-v-8a445198>尚硅谷</span><span class="tag-item" data-v-8a445198>Nginx</span><span class="tag-item" data-v-8a445198>中间件</span><span class="tag-item" data-v-8a445198>后端服务器</span></i></div></div> <div class="theme-reco-content content__default"><h2 id="一、nginx-安装"><a href="#一、nginx-安装" class="header-anchor">#</a> 一、Nginx 安装</h2> <h3 id="_1、版本区别"><a href="#_1、版本区别" class="header-anchor">#</a> 1、版本区别</h3> <p>常用版本分为四大阵营</p> <ul><li><p>Nginx开源版</p> <p>http://nginx.org/</p></li> <li><p>Nginx plus 商业版</p> <p>https://www.nginx.com</p></li> <li><p>openresty</p> <p>http://openresty.org/cn/</p></li> <li><p>Tengine</p> <p>http://tengine.taobao.org/</p></li></ul> <h3 id="_2、nginx-开源版本安装"><a href="#_2、nginx-开源版本安装" class="header-anchor">#</a> 2、Nginx 开源版本安装</h3> <ol><li><p>编译安装</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">tar</span> <span class="token parameter variable">-zxvf</span> nginx-1.24.0.tar.gz
+<span class="token builtin class-name">cd</span> nginx-1.24.0
+./configure <span class="token parameter variable">--prefix</span><span class="token operator">=</span>/usr/local/nginx
+<span class="token function">make</span>
+<span class="token function">make</span> <span class="token function">install</span>
+</code></pre></div></li> <li><p>如果提示或报错</p> <ul><li><p>提示1：</p> <div class="language-shell extra-class"><pre class="language-shell"><code>checking <span class="token keyword">for</span> OS
++ Linux <span class="token number">3.10</span>.0-693.el7.x86_64 x86_64
+checking <span class="token keyword">for</span> C compiler <span class="token punctuation">..</span>. not found
+./configure: error: C compiler cc is not found
+</code></pre></div><p>安装 gcc</p> <div class="language-shell extra-class"><pre class="language-shell"><code>yum <span class="token function">install</span> <span class="token parameter variable">-y</span> gcc
+</code></pre></div></li> <li><p>提示2：</p> <div class="language-shell extra-class"><pre class="language-shell"><code>./configure: error: the HTTP rewrite module requires the PCRE library.
+You can either disable the module by using --without-http_rewrite_module
+option, or <span class="token function">install</span> the PCRE library into the system, or build the PCRE library
+statically from the <span class="token builtin class-name">source</span> with nginx by using --with-pcre<span class="token operator">=</span><span class="token operator">&lt;</span>path<span class="token operator">&gt;</span> option.
+</code></pre></div><p>安装 perl 库</p> <div class="language-shell extra-class"><pre class="language-shell"><code>yum <span class="token function">install</span> <span class="token parameter variable">-y</span> pcre pcre-devel
+</code></pre></div></li> <li><p>提示3：</p> <div class="language-shell extra-class"><pre class="language-shell"><code>./configure: error: the HTTP <span class="token function">gzip</span> module requires the zlib library.
+You can either disable the module by using --without-http_gzip_module
+option, or <span class="token function">install</span> the zlib library into the system, or build the zlib library
+statically from the <span class="token builtin class-name">source</span> with nginx by using --with-zlib<span class="token operator">=</span><span class="token operator">&lt;</span>path<span class="token operator">&gt;</span> option.
+</code></pre></div><p>安装 zlib 库</p> <div class="language-shell extra-class"><pre class="language-shell"><code>yum <span class="token function">install</span> <span class="token parameter variable">-y</span> zlib zlib-devel
+</code></pre></div></li></ul></li> <li><p>启动Nginx</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token builtin class-name">cd</span> /usr/local/nginx
+./nginx 启动
+./nginx <span class="token parameter variable">-s</span> stop 快速停止
+./nginx <span class="token parameter variable">-s</span> quit 优雅关闭，在退出前完成已经接受的连接请求
+./nginx <span class="token parameter variable">-s</span> reload 重新加载配置
+</code></pre></div></li> <li><p>关于防火墙</p> <div class="language-shell extra-class"><pre class="language-shell"><code>systemctl stop firewalld.service		<span class="token comment"># 关闭防火墙</span>
+systemctl disable firewalld.service		<span class="token comment"># 禁止防火墙开机启动</span>
+firewall-cmd <span class="token parameter variable">--zone</span><span class="token operator">=</span>public --add-port<span class="token operator">=</span><span class="token number">80</span>/tcp <span class="token parameter variable">--permanent</span>		<span class="token comment"># 放行 80 端口</span>
+firewall-cmd <span class="token parameter variable">--reload</span>			<span class="token comment"># 重启防火墙</span>
+</code></pre></div></li> <li><p>安装成系统服务</p> <ul><li><p>创建服务脚本</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">vim</span> /usr/lib/systemd/system/nginx.service
+</code></pre></div></li> <li><p>服务脚本内容</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>Unit<span class="token punctuation">]</span>
+<span class="token assign-left variable">Description</span><span class="token operator">=</span>nginx - web server
+<span class="token assign-left variable">After</span><span class="token operator">=</span>network.target remote-fs.target nss-lookup.target
+
+<span class="token punctuation">[</span>Service<span class="token punctuation">]</span>
+<span class="token assign-left variable">Type</span><span class="token operator">=</span>forking
+<span class="token assign-left variable">PIDFile</span><span class="token operator">=</span>/usr/local/nginx/logs/nginx.pid
+<span class="token assign-left variable">ExecStartPre</span><span class="token operator">=</span>/usr/local/nginx/sbin/nginx <span class="token parameter variable">-t</span> <span class="token parameter variable">-c</span> /usr/local/nginx/conf/nginx.conf
+<span class="token assign-left variable">ExecStart</span><span class="token operator">=</span>/usr/local/nginx/sbin/nginx <span class="token parameter variable">-c</span> /usr/local/nginx/conf/nginx.conf
+<span class="token assign-left variable">ExecReload</span><span class="token operator">=</span>/usr/local/nginx/sbin/nginx <span class="token parameter variable">-s</span> reload
+<span class="token assign-left variable">ExecStop</span><span class="token operator">=</span>/usr/local/nginx/sbin/nginx <span class="token parameter variable">-s</span> stop
+<span class="token assign-left variable">ExecQuit</span><span class="token operator">=</span>/usr/local/nginx/sbin/nginx <span class="token parameter variable">-s</span> quit
+<span class="token assign-left variable">PrivateTmp</span><span class="token operator">=</span>true
+
+<span class="token punctuation">[</span>Install<span class="token punctuation">]</span>
+<span class="token assign-left variable">WantedBy</span><span class="token operator">=</span>multi-user.target
+</code></pre></div></li> <li><p>重新加载系统服务</p> <div class="language-shell extra-class"><pre class="language-shell"><code>systemctl daemon-reload
+</code></pre></div></li> <li><p>启动服务</p> <div class="language-shell extra-class"><pre class="language-shell"><code>systemctl start nginx.service
+</code></pre></div></li> <li><p>开机启动</p> <div class="language-shell extra-class"><pre class="language-shell"><code>systemctl <span class="token builtin class-name">enable</span> nginx.service
+</code></pre></div></li></ul></li></ol> <h2 id="二、nginx-基础使用"><a href="#二、nginx-基础使用" class="header-anchor">#</a> 二、Nginx 基础使用</h2> <h3 id="_1、目录结构"><a href="#_1、目录结构" class="header-anchor">#</a> 1、目录结构</h3> <p>进入Nginx的主目录我们可以看到这些文件夹</p> <blockquote><p>client_body_temp</p> <p>conf</p> <p>fastcgi_temp</p> <p>html</p> <p>logs</p> <p>proxy_temp</p> <p>sbin</p> <p>scgi_temp</p> <p>uwsgi_temp</p></blockquote> <p>其中这几个文件夹在刚安装后是没有的，主要用来存放运行过程中的临时文件</p> <blockquote><p>client_body_temp</p> <p>fastcgi_temp</p> <p>proxy_temp</p> <p>scgi_temp</p> <p>uwsgi_temp</p></blockquote> <ul><li><p>conf</p> <p>用来存放配置文件相关</p></li> <li><p>html</p> <p>用来存放静态文件的默认目录 html、css等</p></li> <li><p>sbin</p> <p>nginx的主程序</p></li> <li><p>logs</p> <p>存放 nginx的登录日志文件 access.log，错误日志文件 error.log 和 nginx的进程Id</p></li></ul> <h3 id="_2、基本运行原理"><a href="#_2、基本运行原理" class="header-anchor">#</a> 2、基本运行原理</h3> <p><img src="Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%B0%9A%E7%A1%85%E8%B0%B7/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%AF%87/Nginx%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%9F%BA%E6%9C%AC%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86.png" alt=""></p> <blockquote><p>Nginx主进程不负责处理业务，只负责协调子进程处理业务。</p> <p>子进程获取用户请求后进行处理</p></blockquote> <h3 id="_3、nginx-配置与应用场景"><a href="#_3、nginx-配置与应用场景" class="header-anchor">#</a> 3、Nginx 配置与应用场景</h3> <h4 id="_3-1-最小配置"><a href="#_3-1-最小配置" class="header-anchor">#</a> 3.1 最小配置</h4> <div class="language-shell extra-class"><pre class="language-shell"><code>user nobody<span class="token punctuation">;</span>		<span class="token comment"># 指定 nginx 启动时什么用户来启动	</span>
+</code></pre></div><ul><li><p>worker_processes</p> <div class="language-shell extra-class"><pre class="language-shell"><code>worker_processes <span class="token number">1</span><span class="token punctuation">;</span>  	<span class="token comment"># 默认为1，表示开启一个业务进程，基本上一个cpu内核对应一个 worker_processes</span>
+
+</code></pre></div></li> <li><p>worker_connections</p> <div class="language-shell extra-class"><pre class="language-shell"><code>worker_connections <span class="token number">1024</span><span class="token punctuation">;</span>  		<span class="token comment"># 单个业务进程可接受连接数</span>
+
+</code></pre></div></li> <li><p>include mime.types</p> <div class="language-shell extra-class"><pre class="language-shell"><code>include mime.types<span class="token punctuation">;</span>  		<span class="token comment"># 引入http mime类型的配置文件，该文件存储的所有的请求头信息，可以识别要发送的文件的类型</span>
+
+</code></pre></div></li> <li><p>default_type application/octet-stream</p> <div class="language-shell extra-class"><pre class="language-shell"><code>default_type application/octet-stream<span class="token punctuation">;</span>  		<span class="token comment"># 如果mime类型没匹配上，默认使用二进制流的方式传输。</span>
+</code></pre></div></li> <li><p>sendfile on</p> <div class="language-shell extra-class"><pre class="language-shell"><code>sendfile on<span class="token punctuation">;</span>  		<span class="token comment"># 使用linux的 sendfile(socket, file, len) 高效网络传输，也就是数据0拷贝。</span>
+</code></pre></div><ul><li><p>未开启sendfile</p> <p><img src="Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%B0%9A%E7%A1%85%E8%B0%B7/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%AF%87/Nginx%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8Nginx%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E6%9C%80%E5%B0%8F%E9%85%8D%E7%BD%AEsendfile%E6%9C%AA%E5%BC%80%E5%90%AF.png" alt=""></p></li> <li><p>开启后</p> <p><img src="Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%B0%9A%E7%A1%85%E8%B0%B7/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%AF%87/Nginx%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8Nginx%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E6%9C%80%E5%B0%8F%E9%85%8D%E7%BD%AEsendfile%E5%BC%80%E5%90%AF%E5%90%8E.png" alt=""></p></li></ul></li> <li><p>keepalive_timeout 65</p> <div class="language-shell extra-class"><pre class="language-shell"><code>keepalive_timeout <span class="token number">65</span><span class="token punctuation">;</span>		<span class="token comment"># 可以理解为保持链接，超时的时间</span>
+</code></pre></div></li> <li><p>server</p> <div class="language-shell extra-class"><pre class="language-shell"><code>server <span class="token punctuation">{</span>		<span class="token comment"># 一个 server 就是一个主机，开启多个主机的方式叫虚拟主机（vhost）</span>
+    listen <span class="token number">80</span><span class="token punctuation">;</span>  	<span class="token comment"># 监听端口号</span>
+    server_name localhost<span class="token punctuation">;</span>  	<span class="token comment"># 主机名，可以在此配置域名或主机名</span>
+    
+    location / <span class="token punctuation">{</span>  			<span class="token comment"># 匹配路径，指定是网络地址中主机名后面的部分</span>
+        root html<span class="token punctuation">;</span>  		<span class="token comment"># 文件根目录</span>
+        index index.html index.htm<span class="token punctuation">;</span>  		<span class="token comment"># 默认页名称</span>
+    <span class="token punctuation">}</span>
+    
+    error_page <span class="token number">500</span> <span class="token number">502</span> <span class="token number">503</span> <span class="token number">504</span> /50x.html<span class="token punctuation">;</span>  		<span class="token comment"># 报错编码对应页面</span>
+    location <span class="token operator">=</span> /50x.html <span class="token punctuation">{</span>	<span class="token comment"># 为50x.html设置访问路径，当用户访问50x.html，会去访问 html 目录下去寻找 50x.html页面</span>
+        root html<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></li></ul> <h4 id="_3-2-虚拟主机"><a href="#_3-2-虚拟主机" class="header-anchor">#</a> 3.2 虚拟主机</h4> <p><img src="Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%B0%9A%E7%A1%85%E8%B0%B7/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%AF%87/Nginx%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8Nginx%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E6%9C%80%E5%B0%8F%E9%85%8D%E7%BD%AEserver.png" alt=""></p> <ul><li><p>浏览器、Nginx与http协议</p> <ol><li>TCP协议：tcp是一个广泛的浏览器协议,它是以流的形式,进行传递数据的(数据是二进制的)</li> <li>数据流:相当于一个水龙头,开启之后一直流通,没有关掉的动作</li> <li>HTTP协议:是一个在TCP之上的协议,它会在里面告诉TCP协议什么时候关掉流,当用户的浏览器和Nginx服务器都遵守和实现了HTTP协议之后,他们之间就可以进行信息的交流、传递了。</li> <li>HTTPS协议:HTTP之上的一个协议,加了一层数据加密的措施,保护数据。</li> <li>请求流程:用户浏览器发送请求---&gt; 网关(层层网关)---&gt;---&gt;互联网---&gt;Nginx服务器---&gt;解析请求---&gt;找到资源---&gt;返回给用户</li></ol></li> <li><p>虚拟主机原理</p> <p>如果有这样一个场景,假如一台主机只挂载了一个站点,当这个站点并没有太多的访问量时,就会造成资源过剩(有剩余资源),这时我们可以开启虚拟主机,挂载多个站点,合理的利用主机的资源。</p> <p>一个IP地址可以对应多个域名,根据域名的不同,我们去寻找这些域名对应的资源目录,找到这些资源之后,返回给用户。</p> <p>当然,我们需要在请求报文中加上这个域名,不然服务器不知道我们需要哪个域名的资源</p></li> <li><p>使用host 文件解析域名</p> <p>进行 C:\Windows\System32\drivers\etc 找到 hosts 文件，对文件内容进行修改，添加如下内容</p> <div class="language- extra-class"><pre class="language-text"><code>192.168.37.128 wang128.com
+</code></pre></div><blockquote><p>设置完成后可以ping通，但是网页访问出现 502 错误</p> <p>解决方法：在网页设置中的代理选项中添加 <code>wang128.com</code></p> <p>这样可以在浏览器中输入该域名进而访问虚拟机中nginx对应的网页</p></blockquote></li> <li><p>公网域名配置与泛域名解析实战</p> <p>进入阿里云管理，点击域名，选择域名列表中自己申请的域名，点击解析，点击添加记录</p> <p><img src="Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%B0%9A%E7%A1%85%E8%B0%B7/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%AF%87/Nginx%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8Nginx%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E5%85%AC%E7%BD%91%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE%E4%B8%8E%E6%B3%9B%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E5%AE%9E%E6%88%98.png" alt=""></p> <blockquote><p>在主机记录中可以添 * 以此来配置多级域名</p></blockquote></li> <li><p>Nginx虚拟主机域名配置</p> <p>首先需要在阿里云服务配置公网域名，并且公网域名的主机记录应当为 * ；接着在虚拟机中创建两个网页，分别是</p> <div class="language- extra-class"><pre class="language-text"><code>/usr/local/nginx/www/www/index.html
+/usr/local/nginx/www/vod/index.html
+</code></pre></div><p>接着在 <code>/usr/local/nginx/conf/nginx.conf</code> 配置文件中进行如下配置</p> <div class="language-shell extra-class"><pre class="language-shell"><code>server <span class="token punctuation">{</span>		<span class="token comment"># 一个 server 就是一个主机，开启多个主机的方式叫虚拟主机（vhost）</span>
+    listen <span class="token number">80</span><span class="token punctuation">;</span>  	<span class="token comment"># 监听端口号</span>
+    server_name www.itwangcoder.top<span class="token punctuation">;</span>  	<span class="token comment"># 主机名，可以在此配置域名或主机名</span>
+    
+    location / <span class="token punctuation">{</span>  			<span class="token comment"># 匹配路径，指定是网络地址中主机名后面的部分</span>
+        root www/www<span class="token punctuation">;</span>  		<span class="token comment"># 文件根目录</span>
+        index index.html index.htm<span class="token punctuation">;</span>  		<span class="token comment"># 默认页名称</span>
+    <span class="token punctuation">}</span>
+    
+    error_page <span class="token number">500</span> <span class="token number">502</span> <span class="token number">503</span> <span class="token number">504</span> /50x.html<span class="token punctuation">;</span>  		<span class="token comment"># 报错编码对应页面</span>
+    location <span class="token operator">=</span> /50x.html <span class="token punctuation">{</span>	<span class="token comment"># 为50x.html设置访问路径，当用户访问50x.html，会去访问 html 目录下去寻找 50x.html页面</span>
+        root html<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+server <span class="token punctuation">{</span>		<span class="token comment"># 一个 server 就是一个主机，开启多个主机的方式叫虚拟主机（vhost）</span>
+    listen <span class="token number">80</span><span class="token punctuation">;</span>  	<span class="token comment"># 监听端口号</span>
+    server_name vod.itwangcoder.top<span class="token punctuation">;</span>  	<span class="token comment"># 主机名，可以在此配置域名或主机名</span>
+    
+    location / <span class="token punctuation">{</span>  			<span class="token comment"># 匹配路径，指定是网络地址中主机名后面的部分</span>
+        root www/vod<span class="token punctuation">;</span>  		<span class="token comment"># 文件根目录</span>
+        index index.html index.htm<span class="token punctuation">;</span>  		<span class="token comment"># 默认页名称</span>
+    <span class="token punctuation">}</span>
+    
+    error_page <span class="token number">500</span> <span class="token number">502</span> <span class="token number">503</span> <span class="token number">504</span> /50x.html<span class="token punctuation">;</span>  		<span class="token comment"># 报错编码对应页面</span>
+    location <span class="token operator">=</span> /50x.html <span class="token punctuation">{</span>	<span class="token comment"># 为50x.html设置访问路径，当用户访问50x.html，会去访问 html 目录下去寻找 50x.html页面</span>
+        root html<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>注：在更改配置后需要重启服务</p> <div class="language-shell extra-class"><pre class="language-shell"><code>systemctl reload nginx.service
+</code></pre></div><p>这样就可以通过网址<code>www.itwangcoder.top</code>和<code>vod.itwangcoder.top</code>分别访问不同的虚拟主机（即配置的不同网页）</p></blockquote></li> <li><p>serverName的多种匹配方式</p> <ul><li><p>serverName匹配规则</p> <p>我们需要注意的是serverName匹配分先后顺序，写在前面的匹配上就不会继续往下匹配了。</p></li> <li><p>完整匹配</p> <p>我们可以在同一serverName中匹配多个域名</p> <div class="language-shell extra-class"><pre class="language-shell"><code>server_name vod.itwangcoder.top vod1.itwangcoder.top<span class="token punctuation">;</span>
+</code></pre></div></li> <li><p>通配符匹配</p> <div class="language-shell extra-class"><pre class="language-shell"><code>server_name *.itwangcoder.top<span class="token punctuation">;</span>
+</code></pre></div></li> <li><p>通配符结束匹配</p> <div class="language-shell extra-class"><pre class="language-shell"><code>server_name vod.*<span class="token punctuation">;</span>
+</code></pre></div></li> <li><p>正则匹配</p> <div class="language-shell extra-class"><pre class="language-shell"><code>server_name ~^<span class="token punctuation">[</span><span class="token number">0</span>-9<span class="token punctuation">]</span>+<span class="token punctuation">\</span>.itwangcoder<span class="token punctuation">\</span>.top$<span class="token punctuation">;</span>
+</code></pre></div></li></ul></li> <li><p>基于域名的几种互联网企业需求解析</p> <p><img src="Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%B0%9A%E7%A1%85%E8%B0%B7/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%AF%87/Nginx%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8Nginx%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E5%9F%BA%E4%BA%8E%E5%9F%9F%E5%90%8D%E7%9A%84%E5%87%A0%E7%A7%8D%E4%BA%92%E8%81%94%E7%BD%91%E4%BC%81%E4%B8%9A%E9%9C%80%E6%B1%82%E8%A7%A3%E6%9E%901.png" alt=""></p> <p><img src="Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%B0%9A%E7%A1%85%E8%B0%B7/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%AF%87/Nginx%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8Nginx%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E5%9F%BA%E4%BA%8E%E5%9F%9F%E5%90%8D%E7%9A%84%E5%87%A0%E7%A7%8D%E4%BA%92%E8%81%94%E7%BD%91%E4%BC%81%E4%B8%9A%E9%9C%80%E6%B1%82%E8%A7%A3%E6%9E%902.png" alt=""></p></li></ul> <h3 id="_4、反向代理"><a href="#_4、反向代理" class="header-anchor">#</a> 4、反向代理</h3> <p><img src="Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%B0%9A%E7%A1%85%E8%B0%B7/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%AF%87/Nginx%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86.png" alt=""></p> <p>、<img src="Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%B0%9A%E7%A1%85%E8%B0%B7/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%AF%87/Nginx%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E4%B8%AD%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86.png" alt=""></p> <ol><li><p>网关、代理与反向代理</p> <p>正向代理是代理客户端，服务端不知道实际发起请求的客户端；反向代理是代理服务端，客户端不知道实际提供服务的服务端。</p> <p>访问网络的入口称为<strong>网关</strong>，代理服务器也是一种网关，所有请求都得经过网关转发</p> <p>隧道式代理：Nginx的带宽就是整个网络集群的带宽，比较高的IO请求下，nginx做反向代理不合适。隧道式代理的含义是所有请求都只能通过nginx才能进出</p> <p>lvs：指进入需要通过nginx进行访问，回传数据时由后端服务器直接把数据传给用户，这种称之为 DR 模型</p></li> <li><p>反向代理在企业中的应用场景</p> <p><img src="Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%B0%9A%E7%A1%85%E8%B0%B7/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%AF%87/Nginx%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E4%B8%AD%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E5%9C%A8%E4%BC%81%E4%B8%9A%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF.png" alt=""></p></li></ol> <h3 id="_5、基于反向代理的负载均衡"><a href="#_5、基于反向代理的负载均衡" class="header-anchor">#</a> 5、基于反向代理的负载均衡</h3> <ol><li><p>什么是负载均衡</p> <p>早期的网站流量和业务功能都比较简单，单台服务器就可以满足基本需求，但是随着互联网的发展业务流量越来越大并且业务逻辑也越来越复杂，单台服务器的性能及单点故障问题就凸显出来了，因此需要多台服务器组成应用集群，进行性能的水平扩展以及避免单点故障出现。</p> <ul><li>应用集群：将同一应用部署到多台机器上，组成应用集群，接收负载均衡器分发的请求，进行业务处理并返回响应数据</li> <li>负载均衡器：将用户请求根据对应的负载均衡算法分发到应用集群中的一台服务器进行处理</li></ul></li> <li><p>反向代理到外网与内网的主机配置</p> <p>配置跳转至外网网站，nginx.conf 配置文件修改如下</p> <div class="language-shell extra-class"><pre class="language-shell"><code> server <span class="token punctuation">{</span>
+        listen       <span class="token number">80</span><span class="token punctuation">;</span>
+        server_name  localhost<span class="token punctuation">;</span>
+      
+        location / <span class="token punctuation">{</span>
+            proxy_pass http://www.atguigu.com<span class="token punctuation">;</span>
+            <span class="token comment"># root   html/dist;</span>
+            <span class="token comment"># index  index.html index.htm;</span>
+        <span class="token punctuation">}</span>
+
+        error_page   <span class="token number">500</span> <span class="token number">502</span> <span class="token number">503</span> <span class="token number">504</span>  /50x.html<span class="token punctuation">;</span>
+        location <span class="token operator">=</span> /50x.html <span class="token punctuation">{</span>
+            root   html<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>配置跳转至本机的服务器，nginx.conf 配置文件修改如下</p> <div class="language-shell extra-class"><pre class="language-shell"><code>  server <span class="token punctuation">{</span>
+        listen       <span class="token number">80</span><span class="token punctuation">;</span>
+        server_name  localhost<span class="token punctuation">;</span>
+      
+        location / <span class="token punctuation">{</span>
+        	proxy_pass http://192.168.37.101<span class="token punctuation">;</span>
+            <span class="token comment"># proxy_pass http://www.atguigu.com;</span>
+            <span class="token comment"># root   html/dist;</span>
+            <span class="token comment"># index  index.html index.htm;</span>
+        <span class="token punctuation">}</span>
+
+        error_page   <span class="token number">500</span> <span class="token number">502</span> <span class="token number">503</span> <span class="token number">504</span>  /50x.html<span class="token punctuation">;</span>
+        location <span class="token operator">=</span> /50x.html <span class="token punctuation">{</span>
+            root   html<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-shell extra-class"><pre class="language-shell"><code>server <span class="token punctuation">{</span>
+        listen       <span class="token number">80</span><span class="token punctuation">;</span>
+        server_name  localhost<span class="token punctuation">;</span>
+
+        location / <span class="token punctuation">{</span>
+            root html<span class="token punctuation">;</span>
+            <span class="token comment"># root   www/www;</span>
+            index  index.html index.htm<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        error_page   <span class="token number">500</span> <span class="token number">502</span> <span class="token number">503</span> <span class="token number">504</span>  /50x.html<span class="token punctuation">;</span>
+        location <span class="token operator">=</span> /50x.html <span class="token punctuation">{</span>
+            root   html<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></li> <li><p>负载均衡基本配置</p> <p>nginx.conf 配置文件修改如下</p> <div class="language-shell extra-class"><pre class="language-shell"><code>	upstream httpds<span class="token punctuation">{</span>
+        server <span class="token number">192.168</span>.37.128:8081<span class="token punctuation">;</span>
+        server <span class="token number">192.168</span>.37.101:80<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    server <span class="token punctuation">{</span>
+        listen       <span class="token number">80</span><span class="token punctuation">;</span>
+        server_name  localhost<span class="token punctuation">;</span>
+
+        location / <span class="token punctuation">{</span>
+            <span class="token comment"># proxy_pass http://qq.com;</span>
+            <span class="token comment"># proxy_pass http://192.168.37.101;</span>
+            proxy_pass http://httpds<span class="token punctuation">;</span>
+            <span class="token comment"># root   html/dist;</span>
+            <span class="token comment"># root   www/www;</span>
+            <span class="token comment"># index  index.html index.htm;</span>
+        <span class="token punctuation">}</span>
+        
+        error_page   <span class="token number">500</span> <span class="token number">502</span> <span class="token number">503</span> <span class="token number">504</span>  /50x.html<span class="token punctuation">;</span>
+        location <span class="token operator">=</span> /50x.html <span class="token punctuation">{</span>
+            root   html<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+     <span class="token punctuation">}</span>
+
+     server <span class="token punctuation">{</span>
+        listen       <span class="token number">8081</span><span class="token punctuation">;</span>
+        server_name  localhost<span class="token punctuation">;</span>
+        
+        location / <span class="token punctuation">{</span>
+            root html<span class="token punctuation">;</span>
+            index  index.html index.htm<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        error_page  <span class="token number">500</span> <span class="token number">502</span> <span class="token number">503</span> <span class="token number">504</span>  /50x.html<span class="token punctuation">;</span>
+        location <span class="token operator">=</span> /50x.html <span class="token punctuation">{</span>
+            root html<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+</code></pre></div></li> <li><p>负载均衡策略</p> <ol><li><p>轮询</p> <p>默认情况下使用轮询方式，逐一转发，这种方式适用于无状态请求。</p> <blockquote><p>轮询策略无法保持会话</p></blockquote></li> <li><p>weight(权重)</p> <p>指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。nginx.conf 配置文件修改如下</p> <div class="language-shell extra-class"><pre class="language-shell"><code>	upstream httpds<span class="token punctuation">{</span>
+        server <span class="token number">192.168</span>.37.128:8081 <span class="token assign-left variable">weight</span><span class="token operator">=</span><span class="token number">4</span> down<span class="token punctuation">;</span>
+        server <span class="token number">192.168</span>.37.101:80 <span class="token assign-left variable">weight</span><span class="token operator">=</span><span class="token number">6</span> backup<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><ul><li>down：表示当前的server暂时不参与负载</li> <li>weight：默认为1.weight越大，负载的权重就越大。</li> <li>backup： 其它所有的非backup机器down或者忙的时候，请求backup机器。</li></ul></li> <li><p>ip_hash（<strong>不经常使用</strong>）</p> <p>根据客户端的ip地址转发同一台服务器，可以保持回话。</p></li> <li><p>least_conn（<strong>不经常使用</strong>）</p> <p>最少连接访问</p></li> <li><p>url_hash（<strong>不经常使用</strong>）</p> <p>根据用户访问的url定向转发请求</p></li> <li><p>fair（<strong>不经常使用</strong>）</p> <p>根据后端服务器响应时间转发请求</p></li></ol></li> <li><p>动静分离的原理和使用场景</p> <p><img src="Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%B0%9A%E7%A1%85%E8%B0%B7/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%AF%87/Nginx%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%9F%BA%E4%BA%8E%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF.png" alt=""></p> <p>首先将前端页面复制到apache-tomcat中的 webapps目录下，接着更改 conf/server.xml 配置文件，添加如下代码</p> <div class="language-xml extra-class"><pre class="language-xml"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Context</span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span><span class="token punctuation">&quot;</span></span> <span class="token attr-name">docBase</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>dist<span class="token punctuation">&quot;</span></span> <span class="token attr-name">reloadable</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>true<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+</code></pre></div><p>nginx.conf 配置文件修改如下</p> <div class="language-shell extra-class"><pre class="language-shell"><code>server <span class="token punctuation">{</span>
+        listen       <span class="token number">80</span><span class="token punctuation">;</span>
+        server_name  localhost<span class="token punctuation">;</span>
+
+        location / <span class="token punctuation">{</span>
+            proxy_pass http://192.168.37.101:8080<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        
+        <span class="token comment">#location /css {</span>
+        <span class="token comment">#	root   html/dist;</span>
+        <span class="token comment">#    index  index.html index.htm;</span>
+        <span class="token comment">#}</span>
+        
+        <span class="token comment">#location /js {</span>
+        <span class="token comment">#	root   html/dist;</span>
+        <span class="token comment">#    index  index.html index.htm;</span>
+        <span class="token comment">#}</span>
+        
+        <span class="token comment">#location /img {</span>
+        <span class="token comment">#	root   html/dist;</span>
+        <span class="token comment">#    index  index.html index.htm;</span>
+        <span class="token comment"># }</span>
+        
+        <span class="token comment"># 下面是正则表达式写法</span>
+        location ~*/<span class="token punctuation">(</span>css<span class="token operator">|</span>img<span class="token operator">|</span>js<span class="token operator">|</span>fonts<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        	root   html/dist<span class="token punctuation">;</span>
+            index  index.html index.htm<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        
+        error_page   <span class="token number">500</span> <span class="token number">502</span> <span class="token number">503</span> <span class="token number">504</span>  /50x.html<span class="token punctuation">;</span>
+        location <span class="token operator">=</span> /50x.html <span class="token punctuation">{</span>
+            root   html<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+     <span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>正则表达式：location 前缀</p> <ul><li><code>/</code> 通用匹配，任何请求都会匹配到。</li> <li><code>=</code> 精准匹配，不是以指定模式开头</li> <li><code>~</code> 正则匹配，区分大小写</li> <li><code>~*</code> 正则匹配，不区分大小写</li> <li><code>^~</code> 非正则匹配，匹配以指定模式开头的location</li></ul> <p>location匹配顺序</p> <ul><li>多个正则location直接按书写顺序匹配，成功后就不会继续往后面匹配</li> <li>普通（非正则）location会一直往下，直到找到匹配度最高的（最大前缀匹配）</li> <li>当普通location与正则location同时存在，如果正则匹配成功,则不会再执行普通匹配</li> <li>所有类型location存在时，“=”匹配 &gt; “^~”匹配 &gt; 正则匹配 &gt; 普通（最大前缀匹配）</li></ul></blockquote></li> <li><p>alias与root</p> <div class="language-shell extra-class"><pre class="language-shell"><code>location /css <span class="token punctuation">{</span>
+    <span class="token builtin class-name">alias</span> /usr/local/nginx/static/css<span class="token punctuation">;</span>
+    index index.html index.htm<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>root用来设置根目录，而alias在接受请求的时候在路径上不会加上location。</p> <ol><li>alias指定的目录是准确的，即location匹配访问的path目录下的文件直接是在alias目录下查找的；</li> <li>root指定 的目录是location匹配访问的path目录的上一级目录,这个path目录一定要是真实存在root指定目录下的；</li> <li>使用 alias标签的目录块中不能使用rewrite的break（具体原因不明）；另外，alias指定的目录后面必须要加上&quot;/&quot;符 号！！</li> <li>alias虚拟目录配置中，location匹配的path目录如果后面不带&quot;/&quot;，那么访问的url地址中这个path目录后 面加不加&quot;/&quot;不影响访问，访问时它会自动加上&quot;/&quot;； 但是如果location匹配的path目录后面加上&quot;/&quot;，那么访问的url地 址中这个path目录必须要加上&quot;/&quot;，访问时它不会自动加上&quot;/&quot;。如果不加上&quot;/&quot;，访问就会失败！</li> <li>root目录配置 中，location匹配的path目录后面带不带&quot;/&quot;，都不会影响访问。</li></ol></blockquote></li> <li><p>URLRewrite</p> <p>nginx.conf 配置文件修改如下</p> <div class="language-shell extra-class"><pre class="language-shell"><code>location / <span class="token punctuation">{</span>
+	rewrite ^/<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span>-9<span class="token punctuation">]</span>+<span class="token punctuation">)</span>.html$ /index.jsp?pageNum<span class="token operator">=</span><span class="token variable">$1</span> <span class="token builtin class-name">break</span><span class="token punctuation">;</span>
+    proxy_pass http://192.168.37.128:8080<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>rewrite是实现URL重写的关键指令，根据regex (正则表达式)部分内容， 重定向到replacement，结尾是flag标记。</p> <div class="language-shell extra-class"><pre class="language-shell"><code>rewrite <span class="token operator">&lt;</span>regex<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>replacement<span class="token operator">&gt;</span> <span class="token punctuation">[</span>flag<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div><table><thead><tr><th>rewrite</th> <th>&lt;regex&gt;</th> <th>&lt;replacement&gt;</th> <th>[flag]</th></tr></thead> <tbody><tr><td>关键字</td> <td>正则</td> <td>替代内容</td> <td>flag标记</td></tr></tbody></table> <ul><li><p>关键字：其中关键字error_log不能改变</p></li> <li><p>正则：perl兼容正则表达式语句进行规则匹配</p></li> <li><p>替代内容：将正则匹配的内容替换成replacement</p></li> <li><p>flag标记：rewrite支持的flag标记</p></li></ul> <p>rewrite参数的标签段位置： server,location,if</p> <p>flag标记说明：</p> <ul><li>last #本条规则匹配完成后，继续向下匹配新的location URI规则</li> <li>break #本条规则匹配完成即终止，不再匹配后面的任何规则</li> <li>redirect #返回302临时重定向，浏览器地址会显示跳转后的URL地址</li> <li>permanent #返回301永久重定向，浏览器地址栏会显示跳转后的URL地址</li></ul></blockquote></li> <li><p>负载均衡与URLRewrite</p> <p>应用服务器防火墙配置</p> <ol><li><p>开启防火墙</p> <div class="language-shell extra-class"><pre class="language-shell"><code>systemctl start firewalld
+
+</code></pre></div></li> <li><p>重启防火墙</p> <div class="language-shell extra-class"><pre class="language-shell"><code>systemctl restart firewalld
+
+</code></pre></div></li> <li><p>重载规则</p> <div class="language-shell extra-class"><pre class="language-shell"><code>firewall-cmd <span class="token parameter variable">--reload</span>
+
+</code></pre></div></li> <li><p>查看已配置规则</p> <div class="language-shell extra-class"><pre class="language-shell"><code>firewall-cmd --list-all
+
+</code></pre></div></li> <li><p>指定端口和ip访问</p> <div class="language-shell extra-class"><pre class="language-shell"><code>firewall-cmd <span class="token parameter variable">--permanent</span> --add-rich-rule<span class="token operator">=</span><span class="token string">&quot;rule family=&quot;</span>ipv4<span class="token string">&quot; source address=&quot;</span><span class="token number">192.168</span>.37.128<span class="token string">&quot; port protocol=&quot;</span>tcp<span class="token string">&quot; port=&quot;</span><span class="token number">8080</span><span class="token string">&quot; accept&quot;</span>
+
+</code></pre></div></li> <li><p>移除规则</p> <div class="language-shell extra-class"><pre class="language-shell"><code>firewall-cmd <span class="token parameter variable">--permanent</span> --remove-rich-rule<span class="token operator">=</span><span class="token string">&quot;rule family=&quot;</span>ipv4<span class="token string">&quot; source address=&quot;</span><span class="token number">192.168</span>.37.128<span class="token string">&quot; port port=&quot;</span><span class="token number">8080</span><span class="token string">&quot; protocol=&quot;</span>tcp<span class="token string">&quot; accept&quot;</span>
+
+</code></pre></div></li> <li><p>网关配置</p> <div class="language-shell extra-class"><pre class="language-shell"><code>upstream httpds <span class="token punctuation">{</span>
+    server <span class="token number">192.168</span>.44.128 <span class="token assign-left variable">weight</span><span class="token operator">=</span><span class="token number">8</span><span class="token punctuation">;</span>
+    server <span class="token number">192.168</span>.44.101:8080 <span class="token assign-left variable">weight</span><span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+location / <span class="token punctuation">{</span>
+    <span class="token comment"># rewrite ^/([0-9]+).html$ /index.jsp?pageNum=$1 redirect;</span>
+    proxy_pass http://httpds<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+</code></pre></div></li></ol></li> <li><p>防盗链</p> <div class="language-shell extra-class"><pre class="language-shell"><code>valid_referers none <span class="token operator">|</span> blocked <span class="token operator">|</span> server_names <span class="token operator">|</span> strings <span class="token punctuation">..</span><span class="token punctuation">..</span>
+</code></pre></div><blockquote><ul><li>none， 检测 Referer 头域不存在的情况。</li> <li>blocked，检测 Referer 头域的值被防火墙或者代理服务器删除或伪装的情况。这种情况该头域的值不以 “http://” 或 “https://” 开头。</li> <li>server_names ，设置一个或多个 URL ，检测 Referer 头域的值是否是这些 URL 中的某一个。</li></ul></blockquote> <p>在需要防盗链的location中配置</p> <div class="language-shell extra-class"><pre class="language-shell"><code>    	location ~*/<span class="token punctuation">(</span>css<span class="token operator">|</span>img<span class="token operator">|</span>js<span class="token operator">|</span>fonts<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            valid_referers none <span class="token number">192.168</span>.37.128<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$invalid_referer</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token builtin class-name">return</span> <span class="token number">403</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            root   html/dist<span class="token punctuation">;</span>
+            index  index.html index.htm<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+</code></pre></div><ol><li><p>使用curl测试</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">curl</span> <span class="token parameter variable">-I</span> http://192.168.37.128/img/logo.053d32eb.png
+</code></pre></div></li> <li><p>带引用</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">curl</span> <span class="token parameter variable">-e</span> <span class="token string">&quot;http://baidu.com&quot;</span> <span class="token parameter variable">-I</span> http://192.168.37.128/img/logo.053d32eb.png
+</code></pre></div></li> <li><p>企业实战盗链资源返回页面或提示图片</p> <p>首先创建一个页面 401.html</p> <p>接着修改配置文件内容 nginx.conf，添加如下内容</p> <div class="language-shell extra-class"><pre class="language-shell"><code> 		error_page   <span class="token number">403</span>  /401.html<span class="token punctuation">;</span>
+        location <span class="token operator">=</span> /401.html <span class="token punctuation">{</span>
+            root   html<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+		<span class="token comment"># 想要返回图片，需要修改如下内容</span>
+		location ~*/<span class="token punctuation">(</span>css<span class="token operator">|</span>img<span class="token operator">|</span>js<span class="token operator">|</span>fonts<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            valid_referers none <span class="token number">192.168</span>.37.128<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$invalid_referer</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            	rewrite ^/	/img/x.png	<span class="token builtin class-name">break</span><span class="token punctuation">;</span>
+                <span class="token comment"># return 403;</span>
+            <span class="token punctuation">}</span>
+            root   html/dist<span class="token punctuation">;</span>
+            index  index.html index.htm<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+</code></pre></div></li></ol></li></ol> <h3 id="_6、高可用配置"><a href="#_6、高可用配置" class="header-anchor">#</a> 6、高可用配置</h3> <ol><li><p>高可用场景及解决方案</p> <p><img src="Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%B0%9A%E7%A1%85%E8%B0%B7/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%AF%87/Nginx%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E9%AB%98%E5%8F%AF%E7%94%A8%E9%85%8D%E7%BD%AE%E5%9C%BA%E6%99%AF%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.png" alt=""></p></li> <li><p>安装 keepalived</p> <ul><li><p>编译安装</p> <p>下载地址：https://www.keepalived.org/download.html#</p> <p>使用 ./configure 编译安装</p> <blockquote><p>如遇报错提示</p> <div class="language-shell extra-class"><pre class="language-shell"><code>configure: error:
+ <span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span> OpenSSL is not properly installed on your system. <span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span>
+ <span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span> Can not include OpenSSL headers files. <span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span>
+</code></pre></div><p>安装依赖</p> <div class="language-shell extra-class"><pre class="language-shell"><code>yum <span class="token function">install</span> openssl-devel
+</code></pre></div></blockquote></li> <li><p>yum 安装</p> <div class="language-shell extra-class"><pre class="language-shell"><code>yum <span class="token function">install</span> <span class="token parameter variable">-y</span> keepalived
+</code></pre></div><blockquote><p><strong>出现错误</strong>：</p> <p>错误：软件包：1:net-snmp-agent-libs-5.7.2-49.el7_9.2.x86_64 (updates)
+需要：libmysqlclient.so.18()(64bit)
+错误：软件包：2:postfix-2.10.1-9.el7.x86_64 (@anaconda)
+需要：libmysqlclient.so.18(libmysqlclient_18)(64bit)</p> <p><strong>解决方案</strong>：</p> <div class="language-shell extra-class"><pre class="language-shell"><code>到官网（https://dev.mysql.com/downloads/mysql/）下载mysql-community-libs-compat-8.0.31-1.el7.x86_64.rpm
+<span class="token function">rpm</span> <span class="token parameter variable">-ivh</span> mysql-community-libs-compat-8.0.31-1.el7.x86_64.rpm
+</code></pre></div></blockquote></li> <li><p>配置</p> <p>使用 yum 安装后配置文件位置在 <code>/etc/keepalived/keepalived.conf</code></p> <p>第一台机器</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token operator">!</span> Configuration File <span class="token keyword">for</span> keepalived
+global_defs <span class="token punctuation">{</span>
+	router_id lb111
+<span class="token punctuation">}</span>
+
+vrrp_instance itwang <span class="token punctuation">{</span>		<span class="token comment"># keepalived 在内网中通讯的协议 ， 后面的是实例名称</span>
+    state MASTER
+    interface ens33			<span class="token comment"># 需要和电脑上的网卡对应上</span>
+    virtual_router_id <span class="token number">51</span>
+    priority <span class="token number">100</span>			<span class="token comment"># 优先级</span>
+    advert_int <span class="token number">1</span>			<span class="token comment"># 间隔检测时间</span>
+    authentication <span class="token punctuation">{</span>		<span class="token comment"># 对 keepaliveed 同一组的认证配置</span>
+        auth_type PASS
+        auth_pass <span class="token number">1111</span>
+    <span class="token punctuation">}</span>
+    virtual_ipaddress <span class="token punctuation">{</span>		<span class="token comment"># 虚拟的ip地址</span>
+    	<span class="token number">192.168</span>.37.200
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>第二台机器</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token operator">!</span> Configuration File <span class="token keyword">for</span> keepalived
+global_defs <span class="token punctuation">{</span>
+	router_id lb110
+<span class="token punctuation">}</span>
+
+vrrp_instance itwang <span class="token punctuation">{</span>		<span class="token comment"># keepalived 在内网中通讯的协议 ， 后面的是实例名称</span>
+    state BACKUP
+    interface ens33			<span class="token comment"># 需要和电脑上的网卡对应上</span>
+    virtual_router_id <span class="token number">51</span>
+    priority <span class="token number">50</span>			<span class="token comment"># 优先级</span>
+    advert_int <span class="token number">1</span>			<span class="token comment"># 间隔检测时间</span>
+    authentication <span class="token punctuation">{</span>		<span class="token comment"># 对 keepaliveed 同一组的认证配置</span>
+        auth_type PASS
+        auth_pass <span class="token number">1111</span>
+    <span class="token punctuation">}</span>
+    virtual_ipaddress <span class="token punctuation">{</span>		<span class="token comment"># 虚拟的ip地址</span>
+    	<span class="token number">192.168</span>.37.200
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>启动服务</p> <div class="language-shell extra-class"><pre class="language-shell"><code>systemctl start keepalived
+</code></pre></div></li></ul></li></ol> <h3 id="_7、https-证书配置"><a href="#_7、https-证书配置" class="header-anchor">#</a> 7、Https 证书配置</h3> <ol><li><p>不安全的http协议</p> <p><img src="Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%B0%9A%E7%A1%85%E8%B0%B7/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%AF%87/Nginx%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8Http%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AE%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84http%E5%8D%8F%E8%AE%AE.png" alt=""></p></li> <li><p>非对称加密算法原理</p> <p><img src="Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%B0%9A%E7%A1%85%E8%B0%B7/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%AF%87/Nginx%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8Http%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AE%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86.png" alt=""></p></li> <li><p>HTTPS中CA机构参与保证互联网安全</p> <p><img src="Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%B0%9A%E7%A1%85%E8%B0%B7/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%AF%87/Nginx%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8Https%E4%B8%ADCA%E6%9C%BA%E6%9E%84%E5%8F%82%E4%B8%8E%E4%BF%9D%E8%AF%81%E4%BA%92%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8.png" alt=""></p> <p>window上查看所有证书信息：win+R后输入 certmgr.msc 即可</p></li> <li><p>证书自签名</p> <ul><li><p>OpenSSL</p> <p>openssl包含：SSL协议库、应用程序以及密码算法库，系统内置</p></li> <li><p>图形化工具 XCA</p> <p>下载地址：https://www.hohnstaedt.de/xca/index.php/download</p></li></ul></li> <li><p>在线证书申请</p></li></ol> <h2 id="三、"><a href="#三、" class="header-anchor">#</a> 三、</h2></div></section> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">2023/12/20 21:49:55</span></div></footer> <!----> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-b57cc07c data-v-7dd95ae2><li class="level-2" data-v-b57cc07c><a href="/vuepressblog/middlewarebook/Nginx--%E5%B0%9A%E7%A1%85%E8%B0%B7.html#一、nginx-安装" class="sidebar-link reco-side-一、nginx-安装" data-v-b57cc07c>一、Nginx 安装</a></li><li class="level-3" data-v-b57cc07c><a href="/vuepressblog/middlewarebook/Nginx--%E5%B0%9A%E7%A1%85%E8%B0%B7.html#_1、版本区别" class="sidebar-link reco-side-_1、版本区别" data-v-b57cc07c>1、版本区别</a></li><li class="level-3" data-v-b57cc07c><a href="/vuepressblog/middlewarebook/Nginx--%E5%B0%9A%E7%A1%85%E8%B0%B7.html#_2、nginx-开源版本安装" class="sidebar-link reco-side-_2、nginx-开源版本安装" data-v-b57cc07c>2、Nginx 开源版本安装</a></li><li class="level-2" data-v-b57cc07c><a href="/vuepressblog/middlewarebook/Nginx--%E5%B0%9A%E7%A1%85%E8%B0%B7.html#二、nginx-基础使用" class="sidebar-link reco-side-二、nginx-基础使用" data-v-b57cc07c>二、Nginx 基础使用</a></li><li class="level-3" data-v-b57cc07c><a href="/vuepressblog/middlewarebook/Nginx--%E5%B0%9A%E7%A1%85%E8%B0%B7.html#_1、目录结构" class="sidebar-link reco-side-_1、目录结构" data-v-b57cc07c>1、目录结构</a></li><li class="level-3" data-v-b57cc07c><a href="/vuepressblog/middlewarebook/Nginx--%E5%B0%9A%E7%A1%85%E8%B0%B7.html#_2、基本运行原理" class="sidebar-link reco-side-_2、基本运行原理" data-v-b57cc07c>2、基本运行原理</a></li><li class="level-3" data-v-b57cc07c><a href="/vuepressblog/middlewarebook/Nginx--%E5%B0%9A%E7%A1%85%E8%B0%B7.html#_3、nginx-配置与应用场景" class="sidebar-link reco-side-_3、nginx-配置与应用场景" data-v-b57cc07c>3、Nginx 配置与应用场景</a></li><li class="level-3" data-v-b57cc07c><a href="/vuepressblog/middlewarebook/Nginx--%E5%B0%9A%E7%A1%85%E8%B0%B7.html#_4、反向代理" class="sidebar-link reco-side-_4、反向代理" data-v-b57cc07c>4、反向代理</a></li><li class="level-3" data-v-b57cc07c><a href="/vuepressblog/middlewarebook/Nginx--%E5%B0%9A%E7%A1%85%E8%B0%B7.html#_5、基于反向代理的负载均衡" class="sidebar-link reco-side-_5、基于反向代理的负载均衡" data-v-b57cc07c>5、基于反向代理的负载均衡</a></li><li class="level-3" data-v-b57cc07c><a href="/vuepressblog/middlewarebook/Nginx--%E5%B0%9A%E7%A1%85%E8%B0%B7.html#_6、高可用配置" class="sidebar-link reco-side-_6、高可用配置" data-v-b57cc07c>6、高可用配置</a></li><li class="level-3" data-v-b57cc07c><a href="/vuepressblog/middlewarebook/Nginx--%E5%B0%9A%E7%A1%85%E8%B0%B7.html#_7、https-证书配置" class="sidebar-link reco-side-_7、https-证书配置" data-v-b57cc07c>7、Https 证书配置</a></li><li class="level-2" data-v-b57cc07c><a href="/vuepressblog/middlewarebook/Nginx--%E5%B0%9A%E7%A1%85%E8%B0%B7.html#三、" class="sidebar-link reco-side-三、" data-v-b57cc07c>三、</a></li></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div><!----><div></div><!----><div class="RibbonAnimation"></div></div></div>
+    <script src="/vuepressblog/assets/js/app.80634c63.js" defer></script><script src="/vuepressblog/assets/js/3.ef187fa4.js" defer></script><script src="/vuepressblog/assets/js/1.93e2b1ee.js" defer></script><script src="/vuepressblog/assets/js/40.fb2393be.js" defer></script><script src="/vuepressblog/assets/js/9.76c7ad5c.js" defer></script>
+  </body>
+</html>
