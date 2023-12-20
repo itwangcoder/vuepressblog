@@ -403,7 +403,7 @@ docker 具体命令 --help
 
 ### 4、小总结
 
-![img](Docker安装/常用命令04小总结.png)
+![](Docker安装/常用命令04小总结.png)
 
 ```shell
 attach   Attach to a running container         # 当前 shell 下 attach 连接指定运行镜像
